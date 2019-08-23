@@ -1,6 +1,7 @@
 package org.stepdefinition;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -67,6 +68,43 @@ public class AirlineRegistration {
 	    driver.findElement(By.xpath("//input[@id='email']")).sendKeys(datas.get(8));
 	    driver.findElement((By.xpath("//input[@name='password']"))).sendKeys(datas.get(9));
 	    
+	}
+	
+	@When("User enter the valid detail")
+	public void user_enter_the_valid_detail(DataTable dataTable) {
+		Map<String, String> datas = dataTable.asMap(String.class, String.class);
+		driver.findElement(By.xpath("//input[@name='firstName']")).sendKeys(datas.get("fname"));
+	    driver.findElement(By.xpath("//input[@name='lastName']")).sendKeys(datas.get("lname"));
+	    driver.findElement(By.xpath("//input[@name='phone']")).sendKeys(datas.get("phno"));
+	    driver.findElement(By.xpath("//input[@id='userName']")).sendKeys(datas.get("email"));
+	    driver.findElement(By.xpath("//input[@name='address1']")).sendKeys(datas.get("address"));
+	    driver.findElement(By.xpath("//input[@name='city']")).sendKeys(datas.get("chennai"));
+	    driver.findElement(By.xpath("//input[@name='state']")).sendKeys(datas.get("tamilnadu"));
+	    driver.findElement(By.xpath("//input[@name='postalCode']")).sendKeys(datas.get("pincode"));
+	    WebElement ele = driver.findElement(By.xpath("//select[@name='country']"));
+	    Select s = new Select(ele);
+	    s.selectByVisibleText("ALGERIA ");
+	    driver.findElement(By.xpath("//input[@id='email']")).sendKeys(datas.get("password"));
+	    driver.findElement((By.xpath("//input[@name='password']"))).sendKeys(datas.get("confirm"));
+	        
+	}
+	
+	@When("User enter the valid detail{string},{string},{string},{string},{string},{string},{string},{string},{string},{string}")
+	public void user_enter_the_valid_detail(String fname, String lname, String phno, String email, String address, String city, String state, String pincode, String password, String confirm) {
+		driver.findElement(By.xpath("//input[@name='firstName']")).sendKeys(fname);
+	    driver.findElement(By.xpath("//input[@name='lastName']")).sendKeys(lname); 
+	    driver.findElement(By.xpath("//input[@name='phone']")).sendKeys(phno);
+	    driver.findElement(By.xpath("//input[@id='userName']")).sendKeys(email);
+	    driver.findElement(By.xpath("//input[@name='address1']")).sendKeys(address);
+	    driver.findElement(By.xpath("//input[@name='city']")).sendKeys(city);
+	    driver.findElement(By.xpath("//input[@name='state']")).sendKeys(state);
+	    driver.findElement(By.xpath("//input[@name='postalCode']")).sendKeys(pincode);
+	    WebElement ele = driver.findElement(By.xpath("//select[@name='country']"));
+	    Select s = new Select(ele);
+	    s.selectByVisibleText("ALGERIA ");
+	    driver.findElement(By.xpath("//input[@id='email']")).sendKeys(password);
+	    driver.findElement((By.xpath("//input[@name='password']"))).sendKeys(confirm);
+		
 	}
 	
 	

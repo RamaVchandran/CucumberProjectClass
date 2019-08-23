@@ -1,5 +1,7 @@
 package org.stepdefinition;
 
+import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.junit.Assert;
@@ -13,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.cucumber.datatable.DataTable;
 
 public class AddTariffPlan {
 	
@@ -78,7 +81,34 @@ public class AddTariffPlan {
 		Assert.assertTrue(driver.findElement(By.xpath("//h2[text()='Congratulation you add Tariff Plan']")).isDisplayed());
 	    
 	}
+	@When("user should enter plan detailss")
+	public void user_should_enter_plan_detailss(DataTable dataTable) {
+		
+		List<List<String>> data = dataTable.asLists(String.class);
+		
+		driver.findElement(By.id("rental1")).sendKeys(data.get(1).get(0));
+		driver.findElement(By.xpath("//input[@name='local_minutes']")).sendKeys(data.get(3).get(1));
+		driver.findElement(By.xpath("//input[@name= 'inter_minutes']")).sendKeys(data.get(3).get(1));
+		driver.findElement(By.xpath("//input[@id='sms_pack']")).sendKeys(data.get(3).get(2));
+		driver.findElement(By.xpath("//input[@id='minutes_charges']")).sendKeys(data.get(3).get(5));
+		driver.findElement(By.xpath("(//div[@style='font-weight:300']/input)[6]")).sendKeys(data.get(3).get(4));
+		driver.findElement(By.xpath("//input[@id='sms_charges']")).sendKeys(data.get(3).get(6));
+	   
+	}
 
-
+	@When("user should enter plan detail")
+	public void user_should_enter_plan_detail(DataTable dataTable) {
+		
+             List<Map<String, String>> data = dataTable.asMaps(String.class,String.class);
+		
+		driver.findElement(By.id("rental1")).sendKeys(data.get(1).get("MR"));
+		driver.findElement(By.xpath("//input[@name='local_minutes']")).sendKeys(data.get(3).get("IM"));
+		driver.findElement(By.xpath("//input[@name= 'inter_minutes']")).sendKeys(data.get(3).get("LM"));
+		driver.findElement(By.xpath("//input[@id='sms_pack']")).sendKeys(data.get(3).get("SMS"));
+		driver.findElement(By.xpath("//input[@id='minutes_charges']")).sendKeys(data.get(3).get("IMC"));
+		driver.findElement(By.xpath("(//div[@style='font-weight:300']/input)[6]")).sendKeys(data.get(3).get("LMC"));
+		driver.findElement(By.xpath("//input[@id='sms_charges']")).sendKeys(data.get(3).get("SMC"));
+	   
+	}
 
 }
