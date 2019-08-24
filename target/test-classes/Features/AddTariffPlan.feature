@@ -1,8 +1,9 @@
+@sanity
 Feature: Add TariffPlan Functionality
   I want to use this template for my feature file
   
   Background:
-   Given user should be telecom homepage
+  # Given user should be telecom homepage
    And user should navigate to Addtariffplan page
   
 
@@ -12,7 +13,8 @@ Feature: Add TariffPlan Functionality
    And user should submit the plan details
    #Then user tariff plan details should get reset
     And user should not be displayed with congratulation you add tariffplan
-  
+ 
+  @smoke @karthi @java 
   Scenario: Add TariffPlan details with valid data
     When user should enter plan detailss
       | 100 | 200 | 300 | 400 | 1 | 2 | 3 |

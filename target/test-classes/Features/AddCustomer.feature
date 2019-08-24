@@ -1,24 +1,27 @@
+@regression @sanity
 Feature: Add Customer functionality
   I want to use this template for my feature file
 
-  Scenario: add customer with valid data
-    Given user should be in telecom home page
+Background:
+   # Given user should be in telecom home page
     And user click on add customer button
+
+@smoke
+  Scenario: add customer with valid data
     When user enters all the fields
     And user click on submit button
     Then user should be displayed the customer id is generated
 
+@karthi
   Scenario: add customer with One Dimensional list
-    Given user should be in telecom home page
-    And user click on add customer button
     When user enters all the fields.
       | ajith | rajan | ramav@gmail.com | chennai | 12344556667 |
     And user click on submit button
     Then user should be displayed the customer id is generated
 
+@smoke @karthi @java 
   Scenario: add customer with One Dimensional list
-    Given user should be in telecom home page
-    And user click on add customer button
+   # Given user should be in telecom home page
     When user enters all the field
       | fname   | soundar           |
       | lname   | rajan             |
@@ -29,8 +32,7 @@ Feature: Add Customer functionality
     Then user should be displayed the customer id is generated
 
   Scenario Outline: 
-    Given user should be in telecom home page
-    And user click on add customer button
+   # Given user should be in telecom home page
     When user enters all the fields"<fname>","<lname>","<email>","<address>","<phno>"
     And user click on submit button
    Then user should be displayed the customer id is generated
@@ -42,3 +44,5 @@ Feature: Add Customer functionality
       | cucumber | rajan | ramav@gmail.com | chennai | 12344556667 |
       | testng   | rajan | ramav@gmail.com | chennai | 12344556667 |
       | junit    | rajan | ramav@gmail.com | chennai | 12344556667 |
+      
+      

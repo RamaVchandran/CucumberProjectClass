@@ -1,3 +1,4 @@
+
 Feature: Add Registration functionlity
   I want to use this template for my feature file
 
