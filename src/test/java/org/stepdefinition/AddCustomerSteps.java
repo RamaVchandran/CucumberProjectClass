@@ -4,18 +4,19 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.objectrepository.AddCustomerPage;
+import org.objectrepository.HomePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.resources.FunctionalLibrary;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 
-public class AddCustomerSteps  {
+public class AddCustomerSteps extends FunctionalLibrary {
 	
-	//
+	
 	
 	@Given("user should be in telecom home page")
 	public void user_should_be_in_telecom_home_page() {
@@ -29,7 +30,9 @@ public class AddCustomerSteps  {
 	@Given("user click on add customer button")
 	public void user_click_on_add_customer_button() {
 		
-		Hook.driver.findElement(By.xpath("(//a[text()='Add Customer'])[1]")).click();
+		HomePage page=new HomePage();
+		
+	  button(page.getCustomerButton());
 		
 		
 	   
@@ -38,12 +41,23 @@ public class AddCustomerSteps  {
 	@When("user enters all the fields")
 	public void user_enters_all_the_fields() {
 		
-		Hook.driver.findElement(By.xpath("(//label[text()='Done'])[1]")).click();
+		AddCustomerPage page=new AddCustomerPage();
+		
+		button(page.getDoneButton());
+		insertValue(page.getFirstName(), "karthi");
+		insertValue(page.getLastName(), "rajan");
+		insertValue(page.getEmail(), "rajan@gmail.com");
+		insertValue(page.getAddress(), "tanjore");
+		insertValue(page.getPhno(), "1234567889");
+		
+		
+		
+	/*	Hook.driver.findElement(By.xpath("(//label[text()='Done'])[1]")).click();
 		Hook.driver.findElement(By.id("fname")).sendKeys("karthi");
 		Hook.driver.findElement(By.id("lname")).sendKeys("rajan");
 		Hook.driver.findElement(By.id("email")).sendKeys("karthi@gmail.com");
 		Hook.driver.findElement(By.name("addr")).sendKeys("tanjore");
-		Hook.driver.findElement(By.id("telephoneno")).sendKeys("123456778");
+		Hook.driver.findElement(By.id("telephoneno")).sendKeys("123456778");*/
 	
 	    
 	}
@@ -53,12 +67,21 @@ public class AddCustomerSteps  {
 		
 		List<String> datas = cusDatas.asList(String.class);
 		
-		Hook.driver.findElement(By.xpath("(//label[text()='Done'])[1]")).click();
+          AddCustomerPage page=new AddCustomerPage();
+		
+		button(page.getDoneButton());
+		insertValue(page.getFirstName(), datas.get(0));
+		insertValue(page.getLastName(), datas.get(1));
+		insertValue(page.getEmail(), datas.get(2));
+		insertValue(page.getAddress(), datas.get(3));
+		insertValue(page.getPhno(), datas.get(4)); 
+		
+	/*	Hook.driver.findElement(By.xpath("(//label[text()='Done'])[1]")).click();
 		Hook.driver.findElement(By.id("fname")).sendKeys(datas.get(0));
 		Hook.driver.findElement(By.id("lname")).sendKeys(datas.get(1));
 		Hook.driver.findElement(By.id("email")).sendKeys(datas.get(2));
 		Hook.driver.findElement(By.name("addr")).sendKeys(datas.get(3));
-		Hook.driver.findElement(By.id("telephoneno")).sendKeys(datas.get(4));
+		Hook.driver.findElement(By.id("telephoneno")).sendKeys(datas.get(4));*/
 
 	}
 	@When("user enters all the field")
@@ -89,7 +112,11 @@ public class AddCustomerSteps  {
 	@When("user click on submit button")
 	public void user_click_on_submit_button() {
 		
-		Hook.driver.findElement(By.xpath("(//input[@type='submit'])[1]")).click();
+		AddCustomerPage page=new AddCustomerPage();
+
+		button(page.getSubmitButton());
+		
+		//Hook.driver.findElement(By.xpath("(//input[@type='submit'])[1]")).click();
 	  
 	}
 
